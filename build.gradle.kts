@@ -1,14 +1,21 @@
 buildscript {
     extra["smackVersion"] = "4.4.6"
     extra["koinVersion"] = "3.5.0"
+    extra["PUBLISH_GROUP_ID"] = "io.github.chriscamed"
+    extra["PUBLISH_VERSION"] = "0.1"
+    extra["PUBLISH_ARTIFACT_ID"] = "XMPPMessenger"
 }
 val smackVersion: String by extra
 val koinVersion: String by extra
+val PUBLISH_GROUP_ID: String by extra
+val PUBLISH_VERSION: String by extra
+val PUBLISH_ARTIFACT_ID: String by extra
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("maven-publish")
 }
+
+apply(from = "publish-remote.gradle")
 
 android {
     namespace = "com.medios.xmppmessenger"
@@ -63,49 +70,4 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-}
-
-tasks.register<Jar>("sourcesJar") {
-    dependsOn("classes")
-    archiveClassifier.set("sources")
-    from("src/main/java")
-}
-
-publishing {
-    publications {
-
-        create<MavenPublication>("maven") {
-            pom {
-                name.set("My Library")
-                description.set("A concise description of my library")
-                url.set("http://www.example.com/library")
-                properties.set(mapOf(
-                    "myProp" to "value",
-                    "prop.with.dots" to "anotherValue"
-                ))
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("johnd")
-                        name.set("John Doe")
-                        email.set("john.doe@example.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://example.com/my-library.git")
-                    developerConnection.set("scm:git:ssh://example.com/my-library.git")
-                    url.set("http://example.com/my-library/")
-                }
-            }
-            groupId = "com.medios.xmppmessenger"
-            artifactId = "library"
-            version = "1.0.0"
-            artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
-        }
-    }
 }

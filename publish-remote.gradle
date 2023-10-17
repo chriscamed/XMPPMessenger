@@ -1,0 +1,80 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+tasks.register('androidReleaseAar', Zip) {
+    from("$buildDir/outputs/aar")
+    archiveClassifier.set('release')
+    archiveExtension.set('aar')
+}
+
+artifacts {
+    archives androidReleaseAar
+}
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // The coordinates of the library, being set from variables that
+                // we'll setup later
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+
+                // Two artifacts, the `aar` (or `jar`) and the sources
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                artifact androidReleaseAar
+//                artifacts javaDocJar
+
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = "XMPP Chat Android library"
+                    url = 'http://github.com/chriscamed/XMPPMessenger.git'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'chriscamed'
+                            name = 'Camilo Medina'
+                            email = 'chriscamed@hotmail.com'
+                        }
+                    }
+
+                    // Version control info
+                    scm {
+                        connection = 'scm:git:git://github.com/chriscamed/XMPPMessenger.git.git'
+                        developerConnection = 'scm:git:ssh://github.com/chriscamed/XMPPMessenger.git.git'
+                        url = 'http://github.com/chriscamed/XMPPMessenger.git/'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"]
+    )
+    sign publishing.publications
+}
+
+afterEvaluate {
+    tasks.named('bundleReleaseAar').configure {
+        dependsOn androidReleaseAar
+    }
+}

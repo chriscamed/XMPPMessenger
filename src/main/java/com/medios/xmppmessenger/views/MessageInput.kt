@@ -90,9 +90,9 @@ fun MessageInput(viewModel: MessengerViewModel) {
                                 viewModel.sendMessage(
                                     Message(
                                         text = text,
-                                        isFromCurrentUser = isCurrentUser
-                                    ),
-                                    to = "chriscamed"
+                                        isFromCurrentUser = isCurrentUser,
+                                        to = "chriscamed"
+                                    )
                                 )
                                 text = ""
                                 isCurrentUser = !isCurrentUser

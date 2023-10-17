@@ -13,9 +13,11 @@ abstract class MessengerViewModel(
 
     private val _messages = MutableStateFlow<List<Message>>(emptyList())
     val messages: StateFlow<List<Message>> = _messages.asStateFlow()
-    open fun sendMessage(message: Message, to: String) {
+    open fun sendMessage(message: Message) {
         _messages.value = _messages.value + message
-        chatConnection.sendMessage(message = message.text, to = to)
+        message.to?.let {
+            chatConnection.sendMessage(message = message.text, to = it)
+        }
     }
 }
 

@@ -63,15 +63,15 @@ fun ChatScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            val remote = Message(text = stringResource(id = R.string.test_message), isFromCurrentUser= false)
-            val current = Message(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true)
+            val remote = Message(text = stringResource(id = R.string.test_message), isFromCurrentUser= false, from = "Remote user")
+            val current = Message(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true, to = "Local user")
             val vm = MessengerViewModelPreview(ChatServerConnection())
-            vm.sendMessage(remote, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(remote, to = "chriscamed")
+            vm.sendMessage(remote)
+            vm.sendMessage(current)
+            vm.sendMessage(current)
+            vm.sendMessage(current)
+            vm.sendMessage(current)
+            vm.sendMessage(remote)
             ChatScreen(vm, XMPPMessengerTheme.defaultColors)
         }
     }
@@ -85,15 +85,15 @@ fun ChatScreenPreviewDark() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            val remote = Message(text = stringResource(id = R.string.test_message), isFromCurrentUser = false)
-            val current = Message(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser =  true)
+            val remote = Message(text = stringResource(id = R.string.test_message), isFromCurrentUser= false, from = "Remote user")
+            val current = Message(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true, to = "Local user")
             val vm = MessengerViewModelPreview(ChatServerConnection())
-            vm.sendMessage(remote, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(current, to = "chriscamed")
-            vm.sendMessage(remote, to = "chriscamed")
+            vm.sendMessage(remote)
+            vm.sendMessage(current)
+            vm.sendMessage(current)
+            vm.sendMessage(current)
+            vm.sendMessage(current)
+            vm.sendMessage(remote)
             ChatScreen(vm, XMPPMessengerTheme.defaultColors)
         }
     }

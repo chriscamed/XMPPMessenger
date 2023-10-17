@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LIGHT -->
+    <color name="message_out_box">#F6F6F6</color>
+    <color name="message_input">#FFFFFF</color>
+    <color name="message_input_border">#B3B3B3</color>
+    <color name="message_bubble_current_user">#E1FFD4</color>
+    <color name="message_remote_user">#FFFFFF</color>
+    <color name="message_hour">#888888</color>
+</resources>

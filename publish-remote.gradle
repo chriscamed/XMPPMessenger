@@ -54,8 +54,8 @@ afterEvaluate {
 
                     // Version control info
                     scm {
-                        connection = 'scm:git:git://github.com/chriscamed/XMPPMessenger.git.git'
-                        developerConnection = 'scm:git:ssh://github.com/chriscamed/XMPPMessenger.git.git'
+                        connection = 'scm:git:git://github.com/chriscamed/XMPPMessenger.git'
+                        developerConnection = 'scm:git:ssh://github.com/chriscamed/XMPPMessenger.git'
                         url = 'http://github.com/chriscamed/XMPPMessenger.git/'
                     }
                 }

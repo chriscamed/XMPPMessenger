@@ -2,7 +2,7 @@ buildscript {
     extra["smackVersion"] = "4.4.6"
     extra["koinVersion"] = "3.5.0"
     extra["PUBLISH_GROUP_ID"] = "io.github.chriscamed"
-    extra["PUBLISH_VERSION"] = "0.0.3"
+    extra["PUBLISH_VERSION"] = "0.0.5"
     extra["PUBLISH_ARTIFACT_ID"] = "XMPPMessenger"
 }
 val smackVersion: String by extra

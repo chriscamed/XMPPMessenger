@@ -19,16 +19,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.medios.xmppmessenger.views.MessageBubble
 import com.medios.xmppmessenger.views.MessageInput
-import com.medios.xmppmessenger.di.ChatServerConnection
-import com.medios.xmppmessenger.model.Message
+import com.medios.xmppmessenger.model.XMPPMessage
 import com.medios.xmppmessenger.theme.XMPPMessengerColorsPalette
 import com.medios.xmppmessenger.theme.XMPPMessengerTheme
-import com.medios.xmppmessenger.viewmodel.MessengerViewModel
-import com.medios.xmppmessenger.viewmodel.MessengerViewModelPreview
+import com.medios.xmppmessenger.viewmodel.XMPPMessengerViewModel
+import com.medios.xmppmessenger.viewmodel.XMPPMessengerViewModelPreview
 import kotlinx.coroutines.launch
 
 @Composable
-fun ChatScreen(viewModel: MessengerViewModel, colors: XMPPMessengerColorsPalette) {
+fun XMPPChatScreen(viewModel: XMPPMessengerViewModel, colors: XMPPMessengerColorsPalette) {
     XMPPMessengerTheme.updatePalette(colors)
     XMPPMessengerTheme {
         Surface {
@@ -63,16 +62,16 @@ fun ChatScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            val remote = Message(text = stringResource(id = R.string.test_message), isFromCurrentUser= false, from = "Remote user")
-            val current = Message(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true, to = "Local user")
-            val vm = MessengerViewModelPreview(ChatServerConnection())
+            val remote = XMPPMessage(text = stringResource(id = R.string.test_message), isFromCurrentUser= false, from = "Remote user")
+            val current = XMPPMessage(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true, to = "Local user")
+            val vm = XMPPMessengerViewModelPreview()
             vm.sendMessage(remote)
             vm.sendMessage(current)
             vm.sendMessage(current)
             vm.sendMessage(current)
             vm.sendMessage(current)
             vm.sendMessage(remote)
-            ChatScreen(vm, XMPPMessengerTheme.defaultColors)
+            XMPPChatScreen(vm, XMPPMessengerTheme.defaultColors)
         }
     }
 }
@@ -85,16 +84,16 @@ fun ChatScreenPreviewDark() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            val remote = Message(text = stringResource(id = R.string.test_message), isFromCurrentUser= false, from = "Remote user")
-            val current = Message(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true, to = "Local user")
-            val vm = MessengerViewModelPreview(ChatServerConnection())
+            val remote = XMPPMessage(text = stringResource(id = R.string.test_message), isFromCurrentUser= false, from = "Remote user")
+            val current = XMPPMessage(text = stringResource(id = R.string.lorem_ipsum), isFromCurrentUser = true, to = "Local user")
+            val vm = XMPPMessengerViewModelPreview()
             vm.sendMessage(remote)
             vm.sendMessage(current)
             vm.sendMessage(current)
             vm.sendMessage(current)
             vm.sendMessage(current)
             vm.sendMessage(remote)
-            ChatScreen(vm, XMPPMessengerTheme.defaultColors)
+            XMPPChatScreen(vm, XMPPMessengerTheme.defaultColors)
         }
     }
 }

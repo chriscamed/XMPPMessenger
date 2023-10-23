@@ -9,12 +9,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -39,17 +37,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.medios.xmppmessenger.R
-import com.medios.xmppmessenger.di.ChatServerConnection
-import com.medios.xmppmessenger.model.Message
+import com.medios.xmppmessenger.model.XMPPMessage
 import com.medios.xmppmessenger.theme.LocalCustomColorsPalette
 import com.medios.xmppmessenger.theme.XMPPMessengerTheme
-import com.medios.xmppmessenger.viewmodel.MessengerViewModel
-import com.medios.xmppmessenger.viewmodel.MessengerViewModelPreview
+import com.medios.xmppmessenger.viewmodel.XMPPMessengerViewModel
+import com.medios.xmppmessenger.viewmodel.XMPPMessengerViewModelPreview
 
 @Composable
-fun MessageInput(viewModel: MessengerViewModel) {
+internal fun MessageInput(viewModel: XMPPMessengerViewModel) {
     var text by remember { mutableStateOf("") }
-    var isCurrentUser by remember { mutableStateOf(true) }
     BasicTextField(
         modifier = Modifier.height(50.dp),
         cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
@@ -91,14 +87,13 @@ fun MessageInput(viewModel: MessengerViewModel) {
                         .background(MaterialTheme.colorScheme.primary)
                         .clickable {
                             viewModel.sendMessage(
-                                Message(
+                                XMPPMessage(
                                     text = text,
-                                    isFromCurrentUser = isCurrentUser,
+                                    isFromCurrentUser = true,
                                     to = "chriscamed"
                                 )
                             )
                             text = ""
-                            isCurrentUser = !isCurrentUser
                         }
                 )
             }
@@ -111,7 +106,7 @@ fun MessageInput(viewModel: MessengerViewModel) {
 fun MessageInputPreview() {
     XMPPMessengerTheme {
         Surface {
-            MessageInput(viewModel = MessengerViewModelPreview(ChatServerConnection()))
+            MessageInput(viewModel = XMPPMessengerViewModelPreview())
         }
     }
 }
@@ -121,7 +116,7 @@ fun MessageInputPreview() {
 fun MessageInputPreviewDark() {
     XMPPMessengerTheme {
         Surface {
-            MessageInput(viewModel = MessengerViewModelPreview(ChatServerConnection()))
+            MessageInput(viewModel = XMPPMessengerViewModelPreview())
         }
     }
 }

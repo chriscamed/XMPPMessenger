@@ -20,12 +20,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.medios.xmppmessenger.model.Message
+import com.medios.xmppmessenger.model.XMPPMessage
 import com.medios.xmppmessenger.theme.LocalCustomColorsPalette
 import com.medios.xmppmessenger.theme.XMPPMessengerTheme
 
 @Composable
-fun MessageBubble(message: Message) {
+internal fun MessageBubble(message: XMPPMessage) {
     Box(modifier = Modifier
         .padding(
             top = 8.dp,
@@ -61,7 +61,7 @@ fun MessageBubble(message: Message) {
 fun MessageBubblePreview() {
     XMPPMessengerTheme {
         Surface {
-            MessageBubble(message = Message(text = "Test message", isFromCurrentUser = true))
+            MessageBubble(message = XMPPMessage(text = "Test message", isFromCurrentUser = true))
         }
     }
 }

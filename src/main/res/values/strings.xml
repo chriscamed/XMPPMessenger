@@ -3,4 +3,5 @@
     <string name="test_message">Test message</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit dignissim justo, nec eleifend eros tincidunt eget. Nunc convallis, mi at posuere ornare, nulla nibh bibendum ante, ac laoreet quam urna vel lorem. Ut posuere porttitor iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at velit non nibh ultrices commodo nec nec arcu. Fusce ipsum leo, maximus nec placerat sed, congue vitae nulla. Pellentesque nisl mi, facilisis vel mi ac, porttitor elementum ligula. In convallis, dui sed gravida tempus, tortor risus ultricies ex, sed lobortis massa felis id risus. Duis porta purus sit amet eleifend mollis. Curabitur quis sapien eu nisi ullamcorper tristique. Quisque ante eros, malesuada sit amet lectus sed, ullamcorper sagittis risus.</string>
     <string name="send_image_description">Send</string>
+    <string name="message">Message</string>
 </resources>

@@ -39,11 +39,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "19"
     }
     buildFeatures {
         compose = true
@@ -62,11 +62,15 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.compose.material3:material3:1.1.2")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
     implementation("org.igniterealtime.smack:smack-tcp:${smackVersion}")
     implementation("org.igniterealtime.smack:smack-android-extensions:${smackVersion}")
+    implementation("org.igniterealtime.smack:smack-extensions:${smackVersion}")
+    implementation("org.igniterealtime.smack:smack-im:${smackVersion}")
     debugImplementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.ui:ui-tooling-preview")
     testImplementation("junit:junit:4.13.2")

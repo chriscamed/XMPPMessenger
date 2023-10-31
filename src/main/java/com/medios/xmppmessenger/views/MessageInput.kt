@@ -71,7 +71,7 @@ internal fun MessageInput(viewModel: XMPPMessengerViewModel) {
                     .padding(all = 8.dp), contentAlignment = Alignment.CenterStart) {
                     innerTextField()
                     if (text.isEmpty()) {
-                        Text(text = "Message", fontSize = 12.sp)
+                        Text(text = stringResource(R.string.message), fontSize = 12.sp)
                     }
                 }
 
@@ -86,13 +86,15 @@ internal fun MessageInput(viewModel: XMPPMessengerViewModel) {
                         .size(width = 40.dp, height = 40.dp)
                         .background(MaterialTheme.colorScheme.primary)
                         .clickable {
-                            viewModel.sendMessage(
-                                XMPPMessage(
-                                    text = text,
-                                    isFromCurrentUser = true,
-                                    to = "chriscamed"
+                            viewModel.selectedContact.value?.let { contact ->
+                                viewModel.sendMessage(
+                                    XMPPMessage(
+                                        text = text,
+                                        isFromCurrentUser = true
+                                    ),
+                                    to = contact
                                 )
-                            )
+                            }
                             text = ""
                         }
                 )
